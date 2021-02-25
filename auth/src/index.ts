@@ -1,4 +1,5 @@
 import express from 'express';
+import 'express-async-errors';
 import { json } from 'body-parser';
 
 import { currentUserRouter } from './routes/current-user';
@@ -22,9 +23,17 @@ app.use(signupRouter);
 //     next(new NotFoundError());
 // });
 
-app.all('*', () => {
+// This code will not handle async scenarios
+// app.all('*', () => {
+//     throw new NotFoundError();
+// });
+
+// Better we're using 'express-async-errors' package
+app.all('*', async (req, res, next) => {
     throw new NotFoundError();
 });
+
+
 
 app.use(errorHandler);
 
