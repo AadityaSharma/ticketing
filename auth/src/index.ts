@@ -2,6 +2,7 @@ import express from 'express';
 import 'express-async-errors';
 import { json } from 'body-parser';
 import mongoose from 'mongoose';
+import cookieSession from 'cookie-session';
 
 import { currentUserRouter } from './routes/current-user';
 import { signinRouter } from './routes/signin';
@@ -11,7 +12,20 @@ import { errorHandler } from './middlewares/error-handler';
 import { NotFoundError } from './errors/not-found-error';
 
 const app = express();
+
+// This is to make express aware that
+// our requests are coming from nginx proxy
+// and to make sure that it should trust that traffic
+// even though its coming from a proxy
+app.set('trust proxy', true);
+
 app.use(json());
+app.use(
+    cookieSession({
+        signed: false,
+        secure: true
+    })
+);
 
 app.use(currentUserRouter);
 app.use(signinRouter);
@@ -33,8 +47,6 @@ app.use(signupRouter);
 app.all('*', async (req, res, next) => {
     throw new NotFoundError();
 });
-
-
 
 app.use(errorHandler);
 
