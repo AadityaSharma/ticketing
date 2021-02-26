@@ -40,11 +40,16 @@ router.post('/api/users/signup', [
         // now, save the user to the database with save() async method
         await user.save();
 
-        // Generate JWT
-        const userJwt = jwt.sign({
-            id: user.id,
-            email: user.email
-        }, 'asdf');
+        const userJwt = jwt.sign(
+            {
+                id: user.id,
+                email: user.email
+            }, 
+            // skip ts check with !
+            // as we already know that JWT_KEY is defined
+            // If not defined, an error will be thrown in the index.ts start() method
+            process.env.JWT_KEY!
+        );
 
         // Store JWT on session object
         req.session = {
