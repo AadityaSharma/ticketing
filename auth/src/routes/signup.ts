@@ -32,6 +32,7 @@ router.post('/api/users/signup', [
         // now, save the user to the database with save() async method
         await user.save();
 
+        // Generate JWT
         const userJwt = jwt.sign(
             {
                 id: user.id,
