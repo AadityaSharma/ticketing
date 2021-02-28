@@ -10,6 +10,7 @@ const LandingPage = ({ currentUser }) => {
 
 // This will be executed during the server side rendering process
 LandingPage.getInitialProps = async (context) => {
+    console.log('LANDING PAGE!!!');
     const client = buildClient(context);
     const { data } = await client.get('/api/users/currentuser');
 
