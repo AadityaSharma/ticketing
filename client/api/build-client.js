@@ -7,13 +7,13 @@ export default ({ req }) => {
         console.log('We are on the server');
         console.log('--------------------------------------');
         return axios.create({
-            baseUrl: 'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
+            baseURL: 'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
             headers: req.headers
         });
     } else {
         // we must be on the browser
         return axios.create({
-            baseUrl: '/'
+            baseURL: '/'
         });
     }
 };
