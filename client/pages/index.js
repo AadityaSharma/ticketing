@@ -3,7 +3,9 @@ import buildClient from '../api/build-client';
 const LandingPage = ({ currentUser }) => {
     console.log(currentUser);
 
-    return <h1>Hello World. This is a landing page!</h1>;
+    return currentUser ? 
+        <h1>You're signed in!</h1>
+        : <h1>You're NOT signed in!</h1>;
 };
 
 // This will be executed during the server side rendering process
