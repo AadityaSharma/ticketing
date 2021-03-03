@@ -48,7 +48,7 @@ global.signin = () => {
     // Build a JWT payload. { id, email }
     // "iat" means --> "issued at time"
     const payload = {
-        id: 'aslfhalk',
+        id: new mongoose.Types.ObjectId().toHexString(),
         email: 'test@test.com'
     };
 

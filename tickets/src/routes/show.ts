@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { requireAuth, NotFoundError } from '@aadi-tickets/common';
+import { NotFoundError } from '@aadi-tickets/common';
 
 import { Ticket } from '../models/ticket';
 
