@@ -4,6 +4,7 @@ import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
 import { errorHandler, NotFoundError, currentUser } from '@aadi-tickets/common';
 import { createTicketRouter } from './routes/new';
+import { showTicketRouter } from './routes/show';
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(
 app.use(currentUser);
 
 app.use(createTicketRouter);
+app.use(showTicketRouter);
 
 // This is useful for async scenarios
 // app.all('*', async (req, res, next) => {
