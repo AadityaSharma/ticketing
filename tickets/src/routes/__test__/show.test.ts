@@ -1,9 +1,12 @@
 import request from 'supertest';
+import mongoose from 'mongoose';
 import { app } from '../../app';
 
 it('returns a 404 if the ticket is not found', async () => {
+    const id = new mongoose.Types.ObjectId().toHexString();
     const response = await request(app)
-        .get('/api/tickets/sdgkjlsdgklj12421affs')
+        .get(`/api/tickets/${id}`)
+        .send()
         // .set('Cookie', global.signin())
         .expect(404);
 });
