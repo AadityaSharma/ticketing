@@ -13,6 +13,8 @@ declare global {
     }
 }
 
+jest.mock('../nats-wrapper');
+
 let mongo: any;
 
 // A hook function that will run before all tests
@@ -31,6 +33,7 @@ beforeAll(async () => {
 
 // A hook function that will run before all tests
 beforeEach(async () => {
+    jest.clearAllMocks();
     const collections = await mongoose.connection.db.collections();
 
     for (let collection of collections) {
