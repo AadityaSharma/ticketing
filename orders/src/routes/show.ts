@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { NotFoundError, requireAuth } from '@aadi-tickets/common';
+import { NotAuthorizedError, NotFoundError, requireAuth } from '@aadi-tickets/common';
 import { Order } from '../models/order';
 
 const router = express.Router();
@@ -14,7 +14,7 @@ router.get('/api/orders/:orderId',
             throw new NotFoundError();
         }
         if (order.userId !== req.currentUser!.id) {
-            throw new NotFoundError();
+            throw new NotAuthorizedError();
         }
 
         res.send(order);
