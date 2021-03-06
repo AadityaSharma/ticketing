@@ -56,6 +56,4 @@ it('returns an error if one user tries to fetch another user\'s order', async ()
         .set('Cookie', global.signin())
         .send()
         .expect(401);
-
-    expect(fetchedOrder.id).toEqual(order.id);
 });
