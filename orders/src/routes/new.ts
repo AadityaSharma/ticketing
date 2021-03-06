@@ -45,7 +45,8 @@ router.post('/api/orders',
             expiresAt: expiration,
             ticket
         });
-
+        await order.save();
+        
         //Todo: Publish an event saying that an order was created
 
 
