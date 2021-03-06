@@ -17,7 +17,7 @@ interface TicketModel extends mongoose.Model<TicketDoc> {
 }
 
 const ticketSchema = new mongoose.Schema({
-    usetitlerId: {
+    title: {
         type: String,
         required: true
     },
