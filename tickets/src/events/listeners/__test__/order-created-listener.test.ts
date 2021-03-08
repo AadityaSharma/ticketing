@@ -45,7 +45,7 @@ it('sets the userId of the ticket', async () => {
 
     const updatedTicket = await Ticket.findById(ticket.id);
 
-    expect(updatedTicket!.userId).toEqual(data.id);
+    expect(updatedTicket!.orderId).toEqual(data.id);
 });
 
 it('acks the message', async () => {
