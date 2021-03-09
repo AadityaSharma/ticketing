@@ -3,6 +3,7 @@ import 'express-async-errors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
 import { errorHandler, NotFoundError, currentUser } from '@aadi-tickets/common';
+import { createChargeRouter } from './routes/new';
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(
 );
 
 app.use(currentUser);
+app.use(createChargeRouter);
 
 // This is useful for async scenarios
 // app.all('*', async (req, res, next) => {
