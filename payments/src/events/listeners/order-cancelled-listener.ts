@@ -2,7 +2,6 @@ import { Message } from 'node-nats-streaming';
 import { Subjects, Listener, OrderCancelledEvent, OrderStatus } from '@aadi-tickets/common';
 import { Order } from '../../models/order';
 import { queueGroupName } from './queue-group-name';
-import { TicketUpdatedPublisher } from '../publishers/ticket-updated-publisher';
 
 export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
     // subject: Subjects.OrderCancelled = Subjects.OrderCancelled;
