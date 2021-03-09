@@ -20,8 +20,8 @@ const setup = async () => {
 
     // create the fake data event
     const data: OrderCancelledEvent['data'] = {
-        id: mongoose.Types.ObjectId().toHexString(),
-        version: 0,
+        id: order.id,
+        version: 1,
         ticket: {
             id: 'sfasf'
         }
