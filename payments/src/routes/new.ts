@@ -8,6 +8,7 @@ import {
     NotAuthorizedError,
     OrderStatus
 } from '@aadi-tickets/common';
+import { stripe } from '../stripe';
 import { Order } from '../models/order';
 
 const router = express.Router();
@@ -41,6 +42,13 @@ async (req: Request, res: Response) => {
     if (order.status === OrderStatus.Cancelled) {
         throw new BadRequestError('Cannot pay for a cancelled order');
     }
+
+    await stripe.charges.create({
+        currency: 'inr',
+        amount: order.price * 100,
+        source: token,
+        description: 'My First Test Charge (created for API docs)',
+    });
 
     res.send({ success: true });
 });
